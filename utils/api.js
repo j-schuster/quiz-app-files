@@ -40,15 +40,36 @@ export const getData = () => {
   return initialData
 }
 
+
  export function getDecks (deck) {
-  return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
-  .then(results => {
-    if(results === null) {
-      AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(initialData))
-      return initialData
-    }else {
-      return JSON.parse(results)
-    }
-  })
-}
+    return AsyncStorage.getItem(FLASHCARDS_STORAGE_KEY)
+    .then(results => {
+      if(results === null) {
+        AsyncStorage.setItem(FLASHCARDS_STORAGE_KEY, JSON.stringify(initialData))
+        return initialData
+      }else {
+        return JSON.parse(results)
+      }
+    })
+  }
+
+
+export function saveDeckTitle(title){
+    return AsyncStorage.mergeItem(FLASHCARDS_STORAGE_KEY, JSON.stringify({
+      [title]: {
+        title: title,
+        questions: []
+      }
+    }))
+  }
+
+
+
+
+
+
+
+
+
+
 
