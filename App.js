@@ -9,7 +9,7 @@ import DeckView from './components/DeckView'
 import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createStore } from 'redux'
-
+import AddCard from './components/AddCard'
 
 const Tabs = TabNavigator({
   DeckList: {
@@ -53,8 +53,18 @@ const MainNavigator = StackNavigator({
         backgroundColor: purple
       }
     }
-  }
-})
+  },
+  AddCard: {
+    screen: AddCard,
+      navigationOptions: {
+        title: 'Add Card',
+        headerTintColor: white,
+        headerStyle: {
+          backgroundColor: purple
+        }
+      }
+    }
+  })
 
 
 export default class App extends React.Component {
