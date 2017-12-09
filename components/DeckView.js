@@ -2,7 +2,7 @@ import React from 'react'
 import { StyleSheet, Text, View } from 'react-native'
 import { getData } from '../utils/api' 
 import { connect } from 'react-redux'
-import { purple, white, red } from '../utils/colors'
+import { purple, white, red, orange } from '../utils/colors'
 import ActionButton from './ActionButton'
 
 class DeckView extends React.Component {
@@ -12,13 +12,15 @@ class DeckView extends React.Component {
 
 		return(
 			<View style={styles.container}>
-				<Text>{decks[deck].title}</Text>
-				<Text>{decks[deck].questions.length}</Text>
+				<View style={styles.card}>
+					<Text style={styles.mainText}>{decks[deck].title}</Text>
+					<Text style={styles.subText}>{decks[deck].questions.length}</Text>
 
-				<ActionButton styles={styles} text={'Add Card'} color={purple}
-	        		onPress={() => this.props.navigation.navigate('AddCard', { entryId: deck })}/>
-	        	<ActionButton styles={styles} text={'Start Quiz'} color={red} 
-	        		onPress={() => this.props.navigation.navigate('Quiz', { entryId: deck })}/>
+					<ActionButton styles={styles} text={'Add Card'} color={purple}
+		        		onPress={() => this.props.navigation.navigate('AddCard', { entryId: deck })}/>
+		        	<ActionButton styles={styles} text={'Start Quiz'} color={red} 
+		        		onPress={() => this.props.navigation.navigate('Quiz', { entryId: deck })}/>
+	        	</View>	
 			</View>
 		)
 	}
@@ -28,7 +30,9 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1, 
 		justifyContent: 'center',
-		alignItems: 'center'
+		alignItems: 'center',
+		backgroundColor: white,
+		padding: 10
 	},
 	iosBtn: {
 		padding: 10,
@@ -41,6 +45,31 @@ const styles = StyleSheet.create({
 		color: white,
 		fontSize: 22,
 		textAlign: 'center'
+	},
+		card: {
+		flex: 1,
+		justifyContent: 'center',
+		alignItems: 'center',
+		padding: 10,
+		backgroundColor: orange,
+		alignSelf: 'stretch',
+		borderRadius: 10,
+		shadowColor: 'rgba(0,0,0,0.34)',
+        shadowOffset: {
+        width: 0,
+        height: 3
+      },
+        shadowRadius: 4,
+        shadowOpacity: 1
+	},
+	mainText: {
+		fontSize: 40,
+		color: white
+	},
+	subText: {
+		fontSize: 30,
+		color: white,
+		marginBottom: 160
 	}
 })
 
