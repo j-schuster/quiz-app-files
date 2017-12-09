@@ -11,6 +11,8 @@ import { Provider } from 'react-redux'
 import reducer from './reducers'
 import { createStore } from 'redux'
 import AddCard from './components/AddCard'
+import Quiz from './components/Quiz'
+
 
 
 function MyStatusBar ({backgroundColor, ...props}) {
@@ -73,8 +75,18 @@ const MainNavigator = StackNavigator({
           backgroundColor: purple
         }
       }
+    },
+    Quiz: {
+      screen: Quiz,
+        navigationOptions: {
+          title: 'Quiz',
+          headerTintColor: white,
+          headerStyle: {
+            backgroundColor: purple
+          }
+        }
     }
-  })
+})
 
 
 export default class App extends React.Component {
