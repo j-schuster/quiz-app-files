@@ -12,6 +12,7 @@ import reducer from './reducers'
 import { createStore } from 'redux'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
+import { setLocalNotification } from './utils/helpers'
 
 
 
@@ -90,6 +91,11 @@ const MainNavigator = StackNavigator({
 
 
 export default class App extends React.Component {
+
+  componentDidMount(){
+    setLocalNotification()
+  }
+
   render() {
     return (
       <Provider store={createStore(reducer)}>

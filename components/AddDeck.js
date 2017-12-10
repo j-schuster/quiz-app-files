@@ -15,10 +15,12 @@ class AdddDeck extends React.Component {
 	submitName = () => {
 		const { text } = this.state
 
-		saveDeckTitle(text)
-		this.props.dispatch(addDeck(text))
-		this.props.navigation.navigate('DeckView', { entryId: text })
-		this.setState({ text: '' })
+		if(this.state.text){
+			saveDeckTitle(text)
+			this.props.dispatch(addDeck(text))
+			this.props.navigation.navigate('DeckView', { entryId: text })
+			this.setState({ text: '' })
+		}
 	}
 
 

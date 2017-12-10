@@ -1,10 +1,11 @@
 import React from 'react'
-import { StyleSheet, View, Text, Button } from 'react-native'
+import { StyleSheet, View, Text, Button, ScrollView } from 'react-native'
 import { getData } from '../utils/api'
 import { connect } from 'react-redux'
 import { getDecks } from '../utils/api'
 import { receiveDecks } from '../actions'
 import { orange, white } from '../utils/colors'
+import { getCardsLength } from '../utils/helpers'
 
 class DeckList extends React.Component {
 
@@ -18,22 +19,23 @@ class DeckList extends React.Component {
 		
 
 		return(
-			<View style={styles.container}>
+			<ScrollView style={styles.container}>
 				{Object.keys(decks).map((deck) => {
 					const { title, questions } = decks[deck]
 					return (
 						<View key={deck} style={styles.card}>
 							<Text style={styles.cardText}>{title}</Text>
-							<Text style={styles.cardText}>{questions.length}</Text>
+							<Text style={styles.cardText}>{questions ? getCardsLength(questions) : null}</Text>
 
-							<Button style={styles.cardBtn} onPress={() => this.props.navigation.navigate('DeckView', {entryId: deck})} 
+							<Button style={styles.cardBtn} 
+									onPress={() => this.props.navigation.navigate('DeckView', {entryId: deck})} 
 									title='view deck'>							
 							</Button>
 
 						</View>
 					)
 				})}
-			</View>
+			</ScrollView>
 		)
 	}
 }

@@ -4,17 +4,19 @@ import { getData } from '../utils/api'
 import { connect } from 'react-redux'
 import { purple, white, red, orange } from '../utils/colors'
 import ActionButton from './ActionButton'
+import { getCardsLength } from '../utils/helpers'
 
 class DeckView extends React.Component {
 	render(){
 		const deck = this.props.navigation.state.params.entryId
 		const { decks } = this.props
+		const questions = decks[deck].questions
 
 		return(
 			<View style={styles.container}>
 				<View style={styles.card}>
 					<Text style={styles.mainText}>{decks[deck].title}</Text>
-					<Text style={styles.subText}>{decks[deck].questions.length}</Text>
+					<Text style={styles.subText}>{questions ? getCardsLength(questions) : null}</Text>
 
 					<ActionButton styles={styles} text={'Add Card'} color={purple}
 		        		onPress={() => this.props.navigation.navigate('AddCard', { entryId: deck })}/>
